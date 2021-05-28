@@ -23,6 +23,48 @@ enum FlightSatus: String {
     case Delayed
 }
 
+enum Airline: String {
+    case AA = "American Airlines"
+    case B6 = "Jet Blue"
+    case BA = "British Airways"
+    case QR = "Qatar Airways"
+}
+
+enum Terminal: Int {
+    case one = 1
+    case two
+    case three
+    case four
+    case five
+    case six
+    case seven
+    case eight
+}
+
+struct Airport {
+    let callName: String
+    let city: String
+    
+}
+
+struct Flight {
+    let destination: Airport
+    let departureTime: Date?
+    let flightNumber: String
+    let airline: Airline
+    let terminal: Terminal?
+    let status: FlightSatus
+}
+
+class DepartureBoard {
+    let departureFlights: [Flight]
+    let currentAirport: Airport
+    
+    init(departureFlights: [Flight], currentAirport: Airport) {
+        self.departureFlights = departureFlights
+        self.currentAirport = currentAirport
+    }
+}
 
 
 //: ## 2. Create 3 flights and add them to a departure board
