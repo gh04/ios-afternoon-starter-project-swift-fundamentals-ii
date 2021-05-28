@@ -16,6 +16,12 @@ import UIKit
 //: e. Use a `String?` for the Terminal, since it may not be set yet (i.e.: waiting to arrive on time)
 //:
 //: f. Use a class to represent a `DepartureBoard` with a list of departure flights, and the current airport
+enum FlightSatus: String {
+    case enroute = "En Route"
+    case Scheduled
+    case Canceled
+    case Delayed
+}
 
 
 
