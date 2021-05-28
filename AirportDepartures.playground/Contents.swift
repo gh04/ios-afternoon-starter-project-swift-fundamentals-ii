@@ -104,9 +104,13 @@ departureBoard.departureFlights.append(flightToHLN)
 //:
 //: d. Print out the current DepartureBoard you created using the function
 
+func printDepartures(departureBoard: DepartureBoard) {
+    for flight in departureBoard.departureFlights {
+        print(flight.destination, flight.departureTime, flight.flightNumber, flight.airline, flight.terminal, flight.status.rawValue)
+    }
+}
 
-
-
+printDepartures(departureBoard: departureBoard)
 //: ## 4. Make a second function to print print an empty string if the `departureTime` is nil
 //: a. Createa new `printDepartures2(departureBoard:)` or modify the previous function
 //:
