@@ -57,7 +57,7 @@ struct Flight {
 }
 
 class DepartureBoard {
-    let departureFlights: [Flight]
+    var departureFlights: [Flight]
     let currentAirport: Airport
     
     init(departureFlights: [Flight], currentAirport: Airport) {
@@ -77,6 +77,21 @@ class DepartureBoard {
 //: d. Make one of the flights have a `nil` terminal because it has not been decided yet.
 //:
 //: e. Stretch: Look at the API for [`DateComponents`](https://developer.apple.com/documentation/foundation/datecomponents?language=objc) for creating a specific time
+let jfkAirport = Airport(callName: "JFK", city: "New York")
+let fllAirport = Airport(callName: "FLL", city: "Fort Lauderdale")
+let laxAirpot = Airport(callName: "LAX", city: "Los Angeles")
+let sfoAirport = Airport(callName: "SFO", city: "San Francisco")
+let hlnAiport = Airport(callName: "HLN", city: "Honolulu")
+
+
+let flightToFLL = Flight(destination: fllAirport, departureTime: Date(), flightNumber: "AA2636", airline: .AA, terminal: .eight, status: .Scheduled)
+let flightToSFO = Flight(destination: sfoAirport, departureTime: nil, flightNumber: "B64407", airline: .B6, terminal: .eight, status: .Canceled)
+let flightToHLN = Flight(destination: hlnAiport, departureTime: Date(), flightNumber: "QR7977", airline: .QR, terminal: nil, status: .Scheduled)
+
+
+var departureBoard = DepartureBoard(departureFlights: [flightToFLL], currentAirport: jfkAirport)
+departureBoard.departureFlights.append(flightToSFO)
+departureBoard.departureFlights.append(flightToHLN)
 
 
 
