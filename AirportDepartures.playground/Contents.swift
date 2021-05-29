@@ -126,7 +126,23 @@ printDepartures(departureBoard: departureBoard)
 //:     Destination: Rochester Airline: Jet Blue Airways Flight: B6 586 Departure Time: 1:26 PM Terminal:  Status: Scheduled
 //:     Destination: Boston Airline: KLM Flight: KL 6966 Departure Time: 1:26 PM Terminal: 4 Status: Scheduled
 
+func printDepartures2(departureBoard: DepartureBoard) {
+    
+    
+    for flight in departureBoard.departureFlights {
+        
+        if let time = flight.departureTime, let terminal = flight.terminal {
+            print("Destination: \(flight.destination.city) Airline: \(flight.airline.rawValue) Flight: \(flight.flightNumber) Departure Time: \(time) Terminal: \(terminal.rawValue) Status: \(flight.status.rawValue)")
+        } else if let departureTime = flight.departureTime {
+            print("Destination: \(flight.destination.city) Airline: \(flight.airline.rawValue) Flight: \(flight.flightNumber) Departure Time: \(departureTime) Terminal:  Status: \(flight.status.rawValue)")
+        } else {
+            print("Destination: \(flight.destination.city) Airline: \(flight.airline.rawValue) Flight: \(flight.flightNumber) Departure Time:  Terminal:  Status: \(flight.status.rawValue)")
+        }
+    }
+}
+    
 
+printDepartures2(departureBoard: departureBoard)
 
 //: ## 5. Add an instance method to your `DepatureBoard` class (above) that can send an alert message to all passengers about their upcoming flight. Loop through the flights and use a `switch` on the flight status variable.
 //: a. If the flight is canceled print out: "We're sorry your flight to \(city) was canceled, here is a $500 voucher"
