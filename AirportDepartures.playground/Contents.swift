@@ -64,6 +64,27 @@ class DepartureBoard {
         self.departureFlights = departureFlights
         self.currentAirport = currentAirport
     }
+    
+    func alertPassengers() {
+        for flight in departureFlights {
+            
+            if flight.departureTime != nil, let terminal = flight.terminal?.rawValue {
+                switch flight.status {
+                case .Canceled:
+                    print("We're sorry your flight to \(flight.destination.city) was canceled, here is a $500 voucher")
+                case .Scheduled:
+                    print("Your flight to \(flight.destination.city) is scheduled to depart at \(flight.departureTime ?? Date()) from terminal: \(terminal)")
+                case .Delayed:
+                    print()
+                case .enroute:
+                    print("Your flight is boarding, please head to terminal: \(terminal) immediately. The doors are closing soon.")
+                }
+            } else if flight.terminal == nil {
+                print("Flight: \(flight.flightNumber) Destination: \(flight.destination.city) Terminal: Please see front desk.")
+        }
+        }
+    }
+
 }
 
 
@@ -106,7 +127,11 @@ departureBoard.departureFlights.append(flightToHLN)
 
 func printDepartures(departureBoard: DepartureBoard) {
     for flight in departureBoard.departureFlights {
-        print(flight.destination, flight.departureTime, flight.flightNumber, flight.airline, flight.terminal, flight.status.rawValue)
+        if let time = flight.departureTime, let terminal = flight.terminal {
+            print(flight.destination.callName, time, flight.flightNumber, flight.airline, terminal, flight.status.rawValue)
+        } else {
+            print(flight.destination.callName, flight.flightNumber, flight.airline, flight.status.rawValue)
+        }
     }
 }
 
@@ -159,7 +184,7 @@ printDepartures2(departureBoard: departureBoard)
 //:
 //: f. Stretch: Display a custom message if the `terminal` is `nil`, tell the traveler to see the nearest information desk for more details.
 
-
+departureBoard.alertPassengers()
 
 
 //: ## 6. Create a free-standing function to calculate your total airfair for checked bags and destination
